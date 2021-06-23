@@ -6,7 +6,13 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      val: 'choice1'
+      problemRound: 1,
+      val: 'choice1',
+      problemStatement: '設問1\n設問文1行目\n設問文2行目\n',
+      choiceState1: '選択肢1',
+      choiceState2: '選択肢2',
+      choiceState3: '選択肢3',
+      choiceState4: '選択肢4',
     };
   }
 
@@ -26,19 +32,28 @@ class App extends React.Component {
   // 次へボタン押下時ハンドラ
   handleNextButtonClick(value) {
     console.log('Click happened:' + value);
-    //alert("alertの確認");
+
+    // 設問ごとの文字列を設定
+    if (this.state.problemRound === 1)
+    {
+      this.setState({
+        problemRound: 2,
+        val: 'choice1',
+        problemStatement: '設問2\n以下のタスクのうち、最もペアプログラミングに適していないタスクはどれですか？',
+        choiceState1: '複数の選択肢が考えられる設計の検討',
+        choiceState2: 'どうやって実現するのか分かっていないため事前に調査が必要な実装',
+        choiceState3: '発表スライドを作成する前の発表シナリオ検討',
+        choiceState4: '設計が明確化しており、手戻るリスクが非常に小さい実装',  
+      });    
+    }
   }
 
   render() {
 
     return (
-      <div className="App">
+      <div className="App" style={{whiteSpace: 'pre-line'}}>
         <p>
-          問題<br/>
-          問題文1行目<br/>
-          問題文2行目<br/>
-          問題文3行目<br/>
-          問題文4行目<br/>
+          {this.state.problemStatement}
         </p>
 
         {/* 選択肢の表示 */}
@@ -50,7 +65,7 @@ class App extends React.Component {
             onChange={() => this.handleChange('choice1')}
             checked={this.state.val === 'choice1'}
           />
-          選択肢1つ目
+          {this.state.choiceState1}
         </label>
         <br/>
         <label>
@@ -60,7 +75,7 @@ class App extends React.Component {
             onChange={() => this.handleChange('choice2')}
             checked={this.state.val === 'choice2'}
           />
-          選択肢2つ目
+          {this.state.choiceState2}
         </label>
         <br/>
         <label>
@@ -70,7 +85,7 @@ class App extends React.Component {
             onChange={() => this.handleChange('choice3')}
             checked={this.state.val === 'choice3'}
           />
-          選択肢3つ目
+          {this.state.choiceState3}
         </label>
         <br/>
         <label>
@@ -80,13 +95,13 @@ class App extends React.Component {
             onChange={() => this.handleChange('choice4')}
             checked={this.state.val === 'choice4'}
           />
-          選択肢4つ目
-        </label>
+           {this.state.choiceState4}
+       </label>
         <br/>
 
         <button 
           onClick={() => this.handleNextButtonClick(this.state.val)}>
-          次へ
+          次の設問へ
         </button>
 
       </div>
