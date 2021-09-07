@@ -10,10 +10,10 @@ export default class QuestionArea extends React.Component {
           problemRound: props.problemRound,
           val: '',
           problemStatement: props.problemStatement,
-          choiceState1: props.choiceState1,
-          choiceState2: props.choiceState2,
-          choiceState3: props.choiceState3,
-          choiceState4: props.choiceState4,
+          choiceState1: 'はい',
+          choiceState2: 'たぶん はい',
+          choiceState3: 'たぶん いいえ',
+          choiceState4: 'いいえ',
         };
     }
 
@@ -37,7 +37,7 @@ export default class QuestionArea extends React.Component {
             />
             {this.state.choiceState1}
             </label>
-            <br/>
+
             <label>
             <input
                 type="radio"
@@ -47,7 +47,7 @@ export default class QuestionArea extends React.Component {
             />
             {this.state.choiceState2}
             </label>
-            <br/>
+
             <label>
             <input
                 type="radio"
@@ -57,7 +57,7 @@ export default class QuestionArea extends React.Component {
             />
             {this.state.choiceState3}
             </label>
-            <br/>
+
             <label>
             <input
                 type="radio"
