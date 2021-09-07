@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import QuestionArea from './QuestionArea';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,18 +17,30 @@ class App extends React.Component {
     };
   }
 
+  render() {
+    return(
+      <div className="App">
+        <div className="questions">
+          <QuestionArea 
+            problemRound={this.state.problemRound}
+            problemStatement={this.state.problemStatement}
+            choiceState1={this.state.choiceState1}
+            choiceState2={this.state.choiceState2}
+            choiceState3={this.state.choiceState3}
+            choiceState4={this.state.choiceState4}
+          />
+        </div>
+        <button 
+        onClick={() => this.handleNextButtonClick(this.state.val)}>
+        次の設問へ
+        </button>
+      </div>
+    );
+  }
   // React hooksを用いてuseStateを利用する例
   // const [状態変数, 状態を変更するための関数] = useState(状態の初期値);
   // const [val, setVal] = React.useState('choice1');
   // https://qiita.com/seira/items/f063e262b1d57d7e78b4
-
-  // ラジオボタンの変更時ハンドラ
-  handleChange(value) {
-    this.setState({
-      val:value,
-    });
-    console.log('handleChange:'+ value);
-  }
 
   // 次へボタン押下時ハンドラ
   handleNextButtonClick(value) {
@@ -48,65 +61,6 @@ class App extends React.Component {
     }
   }
 
-  render() {
-
-    return (
-      <div className="App" style={{whiteSpace: 'pre-line'}}>
-        <p>
-          {this.state.problemStatement}
-        </p>
-
-        {/* 選択肢の表示 */}
-
-        <label>
-          <input
-            type="radio"
-            value="choice1"
-            onChange={() => this.handleChange('choice1')}
-            checked={this.state.val === 'choice1'}
-          />
-          {this.state.choiceState1}
-        </label>
-        <br/>
-        <label>
-          <input
-            type="radio"
-            value="choice2"
-            onChange={() => this.handleChange('choice2')}
-            checked={this.state.val === 'choice2'}
-          />
-          {this.state.choiceState2}
-        </label>
-        <br/>
-        <label>
-          <input
-            type="radio"
-            value="choice3"
-            onChange={() => this.handleChange('choice3')}
-            checked={this.state.val === 'choice3'}
-          />
-          {this.state.choiceState3}
-        </label>
-        <br/>
-        <label>
-          <input
-            type="radio"
-            value="choice4"
-            onChange={() => this.handleChange('choice4')}
-            checked={this.state.val === 'choice4'}
-          />
-           {this.state.choiceState4}
-       </label>
-        <br/>
-
-        <button 
-          onClick={() => this.handleNextButtonClick(this.state.val)}>
-          次の設問へ
-        </button>
-
-      </div>
-    );
-  }
 }
 
 export default App;
