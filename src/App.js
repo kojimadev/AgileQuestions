@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import QuestionArea from './QuestionArea';
+import axios from "axios";
 
 class App extends React.Component {
   // コンストラクタ
@@ -38,7 +39,8 @@ class App extends React.Component {
           problemRound: 7,
           problemStatement: 'リモートワークにおいて、チーム全員が気軽にビデオ通話に誘える関係性があり、分報を用いて誰が今何をしているか透明性がある。',
         },
-      ]
+      ],
+      results : []
     };
   }
 
@@ -79,6 +81,9 @@ class App extends React.Component {
         </button>
         <br/>
         <br/>
+        <div className='Results'>
+        {this.state.results.Description}
+        </div>
       </div>
     );
   }
@@ -89,6 +94,14 @@ class App extends React.Component {
     for (let index = 0; index < this.state.questionStates.length; index++) {
       console.log(index + ':' + this.state.questionStates[index].val);
     }
+
+    // 診断結果をAPIに送信し、自身の結果をStateに設定する
+    axios
+      .get("https://firebasefunctions.azurewebsites.net/api/GetRanking")
+      //.then(res => console.log(res.data))
+      .then(res => this.setState({ results: res.data}))
+      .catch(err => alert(err));
+
   }
 }
 
