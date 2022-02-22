@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import QuestionArea from './QuestionArea';
+import QuestionTable from './QuestionTable';
 import axios from "axios";
 
 class App extends React.Component {
@@ -59,22 +59,12 @@ class App extends React.Component {
   // 描画する
   render() {
 
-    // 設問の定義
-    var questionStatements = [];
-    for(var index in this.state.questionStates){
-      questionStatements.push(<QuestionArea 
-        problemRound={this.state.questionStates[index].problemRound} 
-        problemStatement={this.state.questionStates[index].problemStatement} 
-        updateState={this.updateState.bind(this)}
-        />);
-    }
-
     // 設問と診断結果ボタンの表示
     return(
       <div className="App">
-        <div className="questions">
-          {questionStatements}
-        </div>
+        <QuestionTable 
+          questionStates={this.state.questionStates}
+          updateState={this.updateState.bind(this)} />
         <br/>
         <button onClick={() => this.handleNextButtonClick()}>
         診断結果へ
@@ -101,7 +91,6 @@ class App extends React.Component {
       //.then(res => console.log(res.data))
       .then(res => this.setState({ results: res.data}))
       .catch(err => alert(err));
-
   }
 }
 
