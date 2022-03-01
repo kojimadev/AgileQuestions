@@ -40,7 +40,8 @@ class App extends React.Component {
           problemStatement: 'リモートワークにおいて、チーム全員が気軽にビデオ通話に誘える関係性があり、分報を用いて誰が今何をしているか透明性がある。',
         },
       ],
-      results : []
+      results : [],
+      diagnosed : false
     };
   }
 
@@ -66,7 +67,8 @@ class App extends React.Component {
           questionStates={this.state.questionStates}
           updateState={this.updateState.bind(this)} />
         <br/>
-        <button onClick={() => this.handleNextButtonClick()}>
+        <button onClick={() => this.handleNextButtonClick()}
+          disabled={this.state.diagnosed}>
         診断結果へ
         </button>
         <br/>
@@ -78,12 +80,16 @@ class App extends React.Component {
     );
   }
 
-  // 診断結果ボタン押下時ハンドラ
+  // 診断ボタン押下時ハンドラ
   handleNextButtonClick() {
-    console.log('NextButton Clicked');
+    // デバッグ出力
+    console.log('DiagnosticButton Clicked');
     for (let index = 0; index < this.state.questionStates.length; index++) {
       console.log(index + ':' + this.state.questionStates[index].val);
     }
+
+    // 診断済み状態にStateを更新
+    this.setState({ diagnosed : true })
 
     // 診断結果をAPIに送信し、自身の結果をStateに設定する
     axios
