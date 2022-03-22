@@ -26,11 +26,11 @@ class App extends React.Component {
         },
         {
           problemRound: 4,
-          problemStatement: '新しいツールや技術やプラクティスを試してみようとする文化があり、\n毎月なんらかの試行が行われている。',
+          problemStatement: '新しいツールや技術やプラクティスを試してみようとする風土があり、\n毎月なんらかの新しい試行を行っている。',
         },
         {
           problemRound: 5,
-          problemStatement: '朝会にて、リーダーと報告者だけが議論するのでなく、チーム全員が他メンバーの報告に対して質問や助言ができている。',
+          problemStatement: '朝会がマネージャーへの報告会となってマネージャーと報告者だけが議論するのでなく、メンバー同士で質問や助言ができている。',
         },
         {
           problemRound: 6,
@@ -65,8 +65,8 @@ class App extends React.Component {
     return(
       <div className="App">
         <h1>ハピネスチームビルディング診断</h1>
-        <a href="https://qiita.com/kojimadev/items/4b28f801863cf4e8f0da">ハピネスチームビルディング</a>と呼ばれる楽しいチーム開発の手法を参考に、<br/>
-        世の中の他チームと比較して、自分のチームがどれだけ楽しいチーム作りができているか診断してみましょう。
+        「ハピネスチームビルディング」と呼ばれる楽しいチーム開発をするための手法を参考にした診断です。<br/>
+        自分のチームが「ハピネスチームビルディング」の基準において、どの程度の楽しいチーム作りと評価されるか診断してみましょう。
         <QuestionTable 
           questionStates={this.state.questionStates}
           updateState={this.updateState.bind(this)} />
@@ -98,6 +98,15 @@ class App extends React.Component {
   // 診断ボタン押下時ハンドラ
   handleNextButtonClick() {
     console.log('DiagnosticButton Clicked');
+
+    // すべての設問に対して診断結果を設定していなければ、診断しない
+    for (let index = 0; index < this.state.questionStates.length; index++) {
+      if (this.state.questionStates[index].val === undefined)
+      {
+        alert("すべての設問に回答してから診断ボタンを押してもらいたいです。どうかよろしくお願いします。");
+        return;
+      }
+    }
 
     // 診断結果をAPIに送信するための形式に変換する
     let valuesString = "";
