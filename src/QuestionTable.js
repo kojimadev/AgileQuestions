@@ -43,33 +43,33 @@ export default class QuestionTable extends React.Component {
 									<TableCell>
                                         <input
                                             type="radio"
-                                            value="choice1"
-                                            onChange={() => this.handleChange('choice1', rowData.problemRound)}
-                                            checked={this.state.values[rowData.problemRound - 1] === 'choice1'}
+                                            value="4"
+                                            onChange={() => this.handleChange('4', rowData.problemRound)}
+                                            checked={this.state.values[rowData.problemRound - 1] === '4'}
                                         />
 									</TableCell>
 									<TableCell>
                                         <input
                                             type="radio"
-                                            value="choice2"
-                                            onChange={() => this.handleChange('choice2', rowData.problemRound)}
-                                            checked={this.state.values[rowData.problemRound - 1] === 'choice2'}
+                                            value="3"
+                                            onChange={() => this.handleChange('3', rowData.problemRound)}
+                                            checked={this.state.values[rowData.problemRound - 1] === '3'}
                                         />
 									</TableCell>
 									<TableCell>
                                         <input
                                             type="radio"
-                                            value="choice3"
-                                            onChange={() => this.handleChange('choice3', rowData.problemRound)}
-                                            checked={this.state.values[rowData.problemRound - 1] === 'choice3'}
+                                            value="2"
+                                            onChange={() => this.handleChange('2', rowData.problemRound)}
+                                            checked={this.state.values[rowData.problemRound - 1] === '2'}
                                         />
 									</TableCell>
 									<TableCell>
                                         <input
                                             type="radio"
-                                            value="choice4"
-                                            onChange={() => this.handleChange('choice4', rowData.problemRound)}
-                                            checked={this.state.values[rowData.problemRound - 1] === 'choice4'}
+                                            value="1"
+                                            onChange={() => this.handleChange('1', rowData.problemRound)}
+                                            checked={this.state.values[rowData.problemRound - 1] === '1'}
                                         />
 									</TableCell>
 								</TableRow>

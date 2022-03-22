@@ -9,13 +9,11 @@ import Paper from '@material-ui/core/Paper';
 
 export default class ResultTable extends React.Component {
 
-    constructor(props){
-        super(props);
-    }
-
     render() {
+        if (this.props.Score == null) return (<br/>);
+
 		return (
-			<div>
+			<table>
 				<TableContainer component={Paper}>
 					<Table className="primitiveQuestionTable" aria-label="simple table">
 						<TableHead>
@@ -60,7 +58,15 @@ export default class ResultTable extends React.Component {
 						</TableBody>
 					</Table>
 				</TableContainer>
-			</div>
+
+                <p>
+                    よろしければ、以下の記事を参考に<br/>
+                    得点アップにつながるヒントを見つけてもらえれば幸いです。<br/>
+                    <a href="https://qiita.com/kojimadev/items/4b28f801863cf4e8f0da">1年以上かけて生産性倍増＋成長し続けるチームになった施策を全部公開</a><br/>
+                    <a href="https://qiita.com/kojimadev/items/e12784e6764f1b60e73c">レビューで大量の指摘をして大きな手戻りを発生させた原因はレビューアの私にあった</a><br/>
+                    <a href="https://qiita.com/kojimadev/items/c211207ede652c2abeb0">疲労感と孤独感いっぱいのリモートワークからの脱却</a><br/>
+                </p>
+			</table>
 		);
 	}
 

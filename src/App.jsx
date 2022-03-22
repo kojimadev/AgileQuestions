@@ -78,20 +78,17 @@ class App extends React.Component {
         <br/>
         <br/>
         <center>
-          診断結果を以下に表示
-          <table>
-            <ResultTable 
-              Score={this.state.results.Score}
-              Average={this.state.results.Average}
-              Ranking={this.state.results.Ranking}
-              Message={this.state.results.Description}
-              />
-          </table>
-
-          よろしければ、以下の記事を参考に、得点アップにつながるヒントを見つけてもらえれば幸いです。<br/>
-          <a href="https://qiita.com/kojimadev/items/4b28f801863cf4e8f0da">1年以上かけて生産性倍増＋成長し続けるチームになった施策を全部公開</a><br/>
-          <a href="https://qiita.com/kojimadev/items/e12784e6764f1b60e73c">レビューで大量の指摘をして大きな手戻りを発生させた原因はレビューアの私にあった</a><br/>
-          <a href="https://qiita.com/kojimadev/items/c211207ede652c2abeb0">疲労感と孤独感いっぱいのリモートワークからの脱却</a><br/>
+          {this.state.results.length === 0 &&
+            <p>
+            診断ボタンを押してから診断が表示されるまで数秒かかる事があります
+            </p>
+          }
+          <ResultTable 
+            Score={this.state.results.Score}
+            Average={this.state.results.Average}
+            Ranking={this.state.results.Ranking}
+            Message={this.state.results.Description}
+            />
 
         </center>
       </div>
@@ -100,10 +97,17 @@ class App extends React.Component {
 
   // 診断ボタン押下時ハンドラ
   handleNextButtonClick() {
-    // デバッグ出力
     console.log('DiagnosticButton Clicked');
+
+    // 診断結果をAPIに送信するための形式に変換する
+    let valuesString = "";
     for (let index = 0; index < this.state.questionStates.length; index++) {
       console.log(index + ':' + this.state.questionStates[index].val);
+      if (valuesString.length > 0)
+      {
+        valuesString += ",";
+      }
+      valuesString += this.state.questionStates[index].val;
     }
 
     // 診断済み状態にStateを更新(診断ボタンを無効にする)
@@ -111,7 +115,8 @@ class App extends React.Component {
 
     // 診断結果をAPIに送信し、自身の結果をStateに設定する
     axios
-      .get("https://firebasefunctions.azurewebsites.net/api/GetRanking")
+      .post("https://firebasefunctions.azurewebsites.net/api/DiagnosisResults?values=" + valuesString)
+      //.post("http://localhost:7071/api/DiagnosisResults?values=" + valuesString)
       //.then(res => console.log(res.data))
       .then(res => this.setState({ results: res.data}))
       .catch(err => alert(err));
