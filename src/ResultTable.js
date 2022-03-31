@@ -25,7 +25,7 @@ export default class ResultTable extends React.Component {
 						<TableBody>
                             <TableRow key="score">
                                 <TableCell>
-                                    あなたのチームの得点
+                                    あなたのチームの得点(4点満点)
                                 </TableCell>
                                 <TableCell>
                                     {this.props.Score}
@@ -33,7 +33,7 @@ export default class ResultTable extends React.Component {
                             </TableRow>
                             <TableRow key="average">
                                 <TableCell>
-                                    全国の平均点
+                                    全国の平均点(4点満点)
                                 </TableCell>
                                 <TableCell>
                                     {this.props.Average}

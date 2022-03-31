@@ -69,8 +69,9 @@ class App extends React.Component {
     return(
       <div className="App">
         <h1>ハピネスチームビルディング診断</h1>
-        「ハピネスチームビルディング」と呼ばれる楽しいチーム開発をするための手法を参考にした診断です。<br/>
-        自分のチームが「ハピネスチームビルディング」の基準において、どの程度の楽しいチーム作りと評価されるか診断してみましょう。
+        <a href="https://qiita.com/kojimadev/items/4b28f801863cf4e8f0da#31-%E3%83%8F%E3%83%94%E3%83%8D%E3%82%B9%E3%83%81%E3%83%BC%E3%83%A0%E3%83%93%E3%83%AB%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0" target="_blank" rel="noopener noreferrer">「ハピネスチームビルディング」</a>
+        と呼ばれる楽しいチーム開発をするための手法を参考にした診断です。<br/>
+        あなたのチームが「ハピネスチームビルディング」の基準において、得点がいくつになるか診断してもらえると嬉しいです。
         <QuestionTable 
           questionStates={this.state.questionStates}
           updateState={this.updateState.bind(this)} />
